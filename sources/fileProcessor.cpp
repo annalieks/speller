@@ -58,7 +58,7 @@ void FileProcessor::processDataStructure(const std::string& name, Checker* pObj)
     std::cout << pObj->getAddTime() << " ";
 
     for(int i = 1; i < words.size(); i++)
-        pObj->check(words[i], "../incorrect/" + name + "/" + std::to_string(i));
+        pObj->check(words[i], "../incorrect/" + name + "/" + std::to_string(i) + ".txt");
 
     pObj->printCheckInfo();
 }
