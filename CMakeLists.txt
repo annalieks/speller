@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 file(GLOB SOURCES sources/*.cpp)
 file(GLOB INCLUDES includes/*.h)
 
-add_executable(speller ${SOURCES} ${INCLUDES} includes/HashMapChecker.h sources/hashMapChecker.cpp includes/HashTableChecker.h sources/hashTableChecker.cpp)
+add_executable(speller ${SOURCES} ${INCLUDES})
