@@ -1,12 +1,6 @@
 #include <iostream>
 #include "../includes/BinTreeChecker.h"
 
-// destructor
-BinTreeChecker::~BinTreeChecker()
-{
-    deleteTree(root);
-}
-
 // virtual function that adds element to the tree
 void BinTreeChecker::addWords(const std::vector<std::string>& values)
 {
@@ -25,11 +19,11 @@ void BinTreeChecker::addValueByIndex (long left, long right, const std::vector<s
 }
 
 // recursive function for adding elements into tree (using node root)
-void BinTreeChecker::addValueToTree(const std::string& val, Node*& head)
+void BinTreeChecker::addValueToTree(const std::string& val, std::shared_ptr<Node>& head)
 {
     if (head == nullptr)
     {
-        head = new Node();
+        head = std::make_shared<Node>(Node());
         head->data = val;
         return;
     }
@@ -51,7 +45,7 @@ void BinTreeChecker::checkWords(std::vector<std::string>& values)
 }
 
 // checks if element is in the tree (private function)
-void BinTreeChecker::checkInTree(const std::string& val, Node* head)
+void BinTreeChecker::checkInTree(const std::string& val, std::shared_ptr<Node>& head)
 {
     if(head == nullptr)
     {
@@ -63,14 +57,4 @@ void BinTreeChecker::checkInTree(const std::string& val, Node* head)
         checkInTree(val, head->left);
     if (head->data < val)
         checkInTree(val, head->right);
-}
-
-// deletes tree
-void BinTreeChecker::deleteTree(Node* leaf)
-{
-    if(leaf != nullptr){
-        deleteTree(leaf->left);
-        deleteTree(leaf->right);
-        delete leaf;
-    }
 }
