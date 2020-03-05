@@ -24,7 +24,8 @@ void FileProcessor::closeFile()
 void FileProcessor::processFiles()
 {
     std::string word;
-    std::regex r("([a-z]*|[a-z][a-z']*[a-z])");
+    std::regex target("([a-z]*|[a-z][a-z']*[a-z])");
+    std::regex removed("[^a-z' ]*");
     std::smatch match;
 
     for (const auto& filePath : filePaths)
@@ -35,7 +36,8 @@ void FileProcessor::processFiles()
         while(file >> word)
         {
             transform(word.begin(), word.end(), word.begin(), ::tolower);
-            std::regex_search(word, match, r);
+            word = std::regex_replace(word,removed, "");
+            std::regex_search(word, match, target);
             word = match.str(0);
 
             if (!word.empty())
