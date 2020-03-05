@@ -24,7 +24,7 @@ void FileProcessor::closeFile()
 void FileProcessor::processFiles()
 {
     std::string word;
-    std::regex r("([a-z]*|[a-z][a-z,]*[a-z])");
+    std::regex r("([a-z]*|[a-z][a-z']*[a-z])");
     std::smatch match;
 
     for (const auto& filePath : filePaths)
