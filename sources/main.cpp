@@ -1,6 +1,5 @@
 #include <string>
 #include "../includes/BinTreeChecker.h"
-#include "../includes/CheckWords.h"
 #include "../includes/FileProcessor.h"
 #include "../includes/VectorChecker.h"
 #include "../includes/HashMapChecker.h"
@@ -24,10 +23,10 @@ int main()
     files.processFiles();
 
     // create data structures
-    Checker* pBinaryTree = new BinTreeChecker();
-    Checker* pVector = new VectorChecker();
-    Checker* pHashMap = new HashMapChecker();
-    Checker* pHashTable = new HashTableChecker();
+    std::unique_ptr<Checker> pBinaryTree (new BinTreeChecker());
+    std::unique_ptr<Checker> pVector (new VectorChecker());
+    std::unique_ptr<Checker> pHashMap (new HashMapChecker());
+    std::unique_ptr<Checker> pHashTable (new HashTableChecker());
 
     // Binary Tree
     files.processDataStructure("BinTree", pBinaryTree);

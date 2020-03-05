@@ -48,7 +48,7 @@ void FileProcessor::processFiles()
 }
 
 // processes all information for specified data structure
-void FileProcessor::processDataStructure(const std::string& name, Checker* pObj)
+void FileProcessor::processDataStructure(const std::string& name, std::unique_ptr<Checker>& pObj)
 {
     std::cout << "\n" << name << ": ";
 
