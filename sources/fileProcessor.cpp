@@ -1,7 +1,6 @@
 #include "../includes/FileProcessor.h"
 #include <iostream>
 #include <regex>
-#include <chrono>
 
 // opens file
 void FileProcessor::openFile(const std::string& filePath)
@@ -54,8 +53,6 @@ void FileProcessor::processDataStructure(const std::string& name, Checker* pObj)
     std::cout << "\n" << name << ": ";
 
     pObj->add(words[0]);
-
-    std::cout << pObj->getAddTime() << " ";
 
     for(int i = 1; i < words.size(); i++)
         pObj->check(words[i], "../incorrect/" + name + "/" + std::to_string(i) + ".txt");

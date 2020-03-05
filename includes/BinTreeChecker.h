@@ -1,7 +1,7 @@
 #ifndef SPELLER_BINTREECHECKER_H
 #define SPELLER_BINTREECHECKER_H
 
-#include "Checker.h"
+#include "CheckWords.h"
 
 struct Node
 {
@@ -10,7 +10,7 @@ struct Node
     std::string data;
 };
 
-class BinTreeChecker : public Checker
+class BinTreeChecker : public CheckWords
 {
 private:
     Node* root;

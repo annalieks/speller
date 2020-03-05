@@ -1,9 +1,9 @@
 #ifndef SPELLER_VECTORCHECKER_H
 #define SPELLER_VECTORCHECKER_H
 
-#include "Checker.h"
+#include "CheckWords.h"
 
-class VectorChecker : public Checker
+class VectorChecker : public CheckWords
 {
 private:
     std::vector<std::string> dictionaryWords;

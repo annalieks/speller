@@ -1,11 +1,11 @@
 #ifndef SPELLER_HASHTABLECHECKER_H
 #define SPELLER_HASHTABLECHECKER_H
 
-#include "Checker.h"
+#include "CheckWords.h"
 #include <list>
 #include <cmath>
 
-class HashTableChecker : public Checker
+class HashTableChecker : public CheckWords
 {
 private:
     static const int SIZE = 100000;

@@ -1,10 +1,11 @@
 #include <string>
 #include "../includes/BinTreeChecker.h"
-#include "../includes/Checker.h"
+#include "../includes/CheckWords.h"
 #include "../includes/FileProcessor.h"
 #include "../includes/VectorChecker.h"
 #include "../includes/HashMapChecker.h"
 #include "../includes/HashTableChecker.h"
+#include "../includes/Checker.h"
 
 int main()
 {
