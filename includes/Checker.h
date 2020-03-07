@@ -11,7 +11,6 @@ class Checker
 {
 protected:
     std::string structureName;
-    std::ofstream outFile;
     unsigned long addTime = 0;
     unsigned long checkTime = 0;
     unsigned long checkedWords = 0;
