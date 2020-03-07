@@ -16,9 +16,9 @@ unsigned long HashTableChecker::hash(const std::string& word)
 }
 
 // adds words into hash table
-void HashTableChecker::addWords(const std::vector<std::string>& values)
+void HashTableChecker::addWords(const File& file)
 {
-    for(const auto& word:values)
+    for(const auto& word : file.getWords())
     {
         unsigned long index = hash(word);
 
@@ -38,16 +38,15 @@ void HashTableChecker::addWords(const std::vector<std::string>& values)
 }
 
 // checks words from file
-void HashTableChecker::checkWords(std::vector<std::string>& values)
+void HashTableChecker::checkWords(const File& file)
 {
-    for(const auto& word : values)
+    for(const auto& word : file.getWords())
     {
         unsigned long index = hash(word);
 
         if(dictionaryWords[index].empty())
         {
             incorrectWords++;
-            writeIncorrectWord(word, outFile);
         }
         else {
             auto p = dictionaryWords[index].begin();
@@ -55,10 +54,13 @@ void HashTableChecker::checkWords(std::vector<std::string>& values)
             while (p != dictionaryWords[index].end() && *p != word)
                 p++;
 
-            if (p == dictionaryWords[index].end()) {
+            if (p == dictionaryWords[index].end())
                 incorrectWords++;
-                writeIncorrectWord(word, outFile);
-            }
         }
     }
+}
+
+HashTableChecker::HashTableChecker()
+{
+    structureName = "Hash table";
 }

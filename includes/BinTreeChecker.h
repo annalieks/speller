@@ -1,7 +1,7 @@
 #ifndef SPELLER_BINTREECHECKER_H
 #define SPELLER_BINTREECHECKER_H
 
-#include "CheckWords.h"
+#include "Checker.h"
 #include <memory>
 
 struct Node
@@ -11,7 +11,7 @@ struct Node
     std::string data;
 };
 
-class BinTreeChecker : public CheckWords
+class BinTreeChecker : public Checker
 {
 private:
     std::shared_ptr<Node> root;
@@ -21,9 +21,11 @@ private:
     void addValueByIndex(long left, long right, const std::vector<std::string>& values);
 
 public:
-    BinTreeChecker() : root(nullptr) {}
-    void addWords(const std::vector<std::string>& values) final;
-    void checkWords(std::vector<std::string>& values) final;
+    BinTreeChecker();
+    ~BinTreeChecker() = default;
+
+    void addWords(const File& file) final;
+    void checkWords(const File& file) final;
 };
 
 #endif //SPELLER_BINTREECHECKER_H

@@ -1,6 +1,5 @@
 #include <string>
 #include "../includes/BinTreeChecker.h"
-#include "../includes/FileProcessor.h"
 #include "../includes/VectorChecker.h"
 #include "../includes/HashMapChecker.h"
 #include "../includes/HashTableChecker.h"
@@ -8,8 +7,8 @@
 
 int main()
 {
-    std::vector<std::string> filePaths = {
-            "../dictionary.txt",
+    std::string dictPath = "../dictionary.txt";
+    std::vector<std::string> textsPaths = {
             "../texts/alice.txt",
             "../texts/dracula.txt",
             "../texts/holmes.txt",
@@ -17,28 +16,34 @@ int main()
             "../texts/tolstoy.txt"
     };
 
-    FileProcessor files(filePaths);
-
-    // open files and process all words from files
-    files.processFiles();
-
     // create data structures
     std::unique_ptr<Checker> pBinaryTree (new BinTreeChecker());
     std::unique_ptr<Checker> pVector (new VectorChecker());
     std::unique_ptr<Checker> pHashMap (new HashMapChecker());
     std::unique_ptr<Checker> pHashTable (new HashTableChecker());
 
-    // Binary Tree
-    files.processDataStructure("BinTree", pBinaryTree);
+    // process dictionary
+    File dictionary(dictPath);
 
-    // Vector
-    files.processDataStructure("Vector", pVector);
+    //add dictionary
+    pBinaryTree->add(dictionary);
+    pVector->add(dictionary);
+    pHashMap->add(dictionary);
+    pHashTable->add(dictionary);
 
-    // Unordered set (Hash Map)
-    files.processDataStructure("HashMap", pHashMap);
+    for(const auto& filePath : textsPaths)
+    {
+        File text(filePath);
+        pBinaryTree->check(text);
+        pVector->check(text);
+        pHashMap->check(text);
+        pHashTable->check(text);
+    }
 
-    // Hash Table
-    files.processDataStructure("HashTable", pHashTable);
+    pBinaryTree->printCheckInfo();
+    pVector->printCheckInfo();
+    pHashMap->printCheckInfo();
+    pHashTable->printCheckInfo();
 
     return 0;
 }

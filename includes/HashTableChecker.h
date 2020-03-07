@@ -1,11 +1,11 @@
 #ifndef SPELLER_HASHTABLECHECKER_H
 #define SPELLER_HASHTABLECHECKER_H
 
-#include "CheckWords.h"
+#include "Checker.h"
 #include <list>
 #include <cmath>
 
-class HashTableChecker : public CheckWords
+class HashTableChecker : public Checker
 {
 private:
     static const int SIZE = 100000;
@@ -14,8 +14,10 @@ private:
     std::list<std::string> dictionaryWords[SIZE];
 
 public:
-    void addWords(const std::vector<std::string>& values) final;
-    void checkWords(std::vector<std::string>& values) final;
+    HashTableChecker();
+    ~HashTableChecker() = default;
+    void addWords(const File& file) final;
+    void checkWords(const File& file) final;
 };
 
 #endif //SPELLER_HASHTABLECHECKER_H

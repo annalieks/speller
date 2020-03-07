@@ -1,37 +1,24 @@
 #include "../includes/VectorChecker.h"
+#include <algorithm>
 
 // adds words into vector
-void VectorChecker::addWords(const std::vector<std::string>& values)
+void VectorChecker::addWords(const File& file)
 {
-     dictionaryWords = values;
+     dictionaryWords = file.getWords();
 }
 
 // checks words from file
-void VectorChecker::checkWords(std::vector<std::string>& values)
+void VectorChecker::checkWords(const File& file)
 {
     //Binary Search
-    for(const auto& word : values)
+    for(const auto& word : file.getWords())
     {
-        if(binarySearch(word, dictionaryWords) < 0) {
+        if(!std::binary_search(dictionaryWords.begin(), dictionaryWords.end(), word))
            incorrectWords++;
-           writeIncorrectWord(word, outFile);
-        }
     }
 }
 
-// binary search function (works faster that std::binary_search)
-long VectorChecker::binarySearch(const std::string& word, const std::vector<std::string>& dictWords)
+VectorChecker::VectorChecker()
 {
-    long lower = 0;
-    long upper = long(dictWords.size()) - 1;
-    while (lower <= upper) {
-        long mid = lower + (upper - lower) / 2;
-        if (word == (dictWords[mid]))
-            return mid;
-        if (word > (dictWords[mid]))
-            lower = mid + 1;
-        else
-            upper = mid - 1;
-    }
-    return -1;
+    structureName = "std::vector";
 }

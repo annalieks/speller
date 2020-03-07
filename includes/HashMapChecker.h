@@ -1,17 +1,19 @@
 #ifndef SPELLER_HASHMAPCHECKER_H
 #define SPELLER_HASHMAPCHECKER_H
 
-#include "CheckWords.h"
+#include "Checker.h"
 #include <unordered_set>
 
-class HashMapChecker : public CheckWords
+class HashMapChecker : public Checker
 {
 private:
     std::unordered_set<std::string> dictionaryWords;
 
 public:
-    void addWords(const std::vector<std::string>& values) final;
-    void checkWords(std::vector<std::string>& values) final;
+    HashMapChecker();
+    ~HashMapChecker() = default;
+    void addWords(const File& file) final;
+    void checkWords(const File& file) final;
 };
 
 #endif //SPELLER_HASHMAPCHECKER_H

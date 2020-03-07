@@ -1,21 +1,23 @@
 #include "../includes/HashMapChecker.h"
 
 // adds words into unordered set
-void HashMapChecker::addWords(const std::vector<std::string> &values)
+void HashMapChecker::addWords(const File& file)
 {
-    for(const auto& word : values)
+    for(const auto& word : file.getWords())
         dictionaryWords.insert(word);
 }
 
 // checks words from file
-void HashMapChecker::checkWords(std::vector<std::string>& values)
+void HashMapChecker::checkWords(const File& file)
 {
-    for(const auto& word : values)
+    for(const auto& word : file.getWords())
     {
         if(dictionaryWords.find(word) == dictionaryWords.end())
-        {
             incorrectWords++;
-            writeIncorrectWord(word, outFile);
-        }
     }
+}
+
+HashMapChecker::HashMapChecker()
+{
+    structureName = "Hash Map";
 }

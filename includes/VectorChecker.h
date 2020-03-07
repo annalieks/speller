@@ -1,17 +1,19 @@
 #ifndef SPELLER_VECTORCHECKER_H
 #define SPELLER_VECTORCHECKER_H
 
-#include "CheckWords.h"
+#include "Checker.h"
 
-class VectorChecker : public CheckWords
+class VectorChecker : public Checker
 {
 private:
     std::vector<std::string> dictionaryWords;
-    static long binarySearch(const std::string& word, const std::vector<std::string>& dictWords);
 
 public:
-    void addWords(const std::vector<std::string>& values) final;
-    void checkWords(std::vector<std::string>& values) final;
+    VectorChecker();
+    ~VectorChecker() = default;
+
+    void addWords(const File& file) final;
+    void checkWords(const File& file) final;
 };
 
 #endif //SPELLER_VECTORCHECKER_H

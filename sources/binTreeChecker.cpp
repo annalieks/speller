@@ -2,9 +2,9 @@
 #include "../includes/BinTreeChecker.h"
 
 // virtual function that adds element to the tree
-void BinTreeChecker::addWords(const std::vector<std::string>& values)
+void BinTreeChecker::addWords(const File& file)
 {
-    addValueByIndex(0, long(values.size())-1, values);
+    addValueByIndex(0, long(file.getWords().size())-1, file.getWords());
 }
 
 //recursive function for calculating element index and adding element to the tree
@@ -38,9 +38,9 @@ void BinTreeChecker::addValueToTree(const std::string& val, std::shared_ptr<Node
 }
 
 // virtual function for checking every word from vector of words
-void BinTreeChecker::checkWords(std::vector<std::string>& values)
+void BinTreeChecker::checkWords(const File& file)
 {
-    for (const auto& val : values)
+    for (const auto& val : file.getWords())
         checkInTree(val, root);
 }
 
@@ -50,11 +50,15 @@ void BinTreeChecker::checkInTree(const std::string& val, std::shared_ptr<Node>& 
     if(head == nullptr)
     {
         incorrectWords++;
-        writeIncorrectWord(val, outFile);
         return;
     }
     if (head->data > val)
         checkInTree(val, head->left);
     if (head->data < val)
         checkInTree(val, head->right);
+}
+
+BinTreeChecker::BinTreeChecker() : root(nullptr)
+{
+    structureName = "Binary Tree";
 }
