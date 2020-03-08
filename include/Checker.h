@@ -5,7 +5,7 @@
 #include <vector>
 #include <fstream>
 #include <chrono>
-#include "../includes/File.h"
+#include "file.h"
 
 class Checker
 {
@@ -20,6 +20,7 @@ protected:
     virtual void checkWords(const File& file) = 0;
 
 public:
+    virtual ~Checker() = default;
     void add(const File& file);
     void check(const File& file);
     void printCheckInfo();

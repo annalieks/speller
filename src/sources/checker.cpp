@@ -1,5 +1,5 @@
-#include "../includes/Checker.h"
-#include "../includes/Timer.h"
+#include "Checker.h"
+#include "timer.h"
 #include <iostream>
 
 // prints info about passed time and processed words
@@ -15,7 +15,7 @@ void Checker::printCheckInfo()
 // checks words from file
 void Checker::check(const File& file)
 {
-    Timer timer;
+    timer timer;
     timer.startTimer();
 
     checkWords(file);
@@ -28,7 +28,7 @@ void Checker::check(const File& file)
 // adds words to data structure
 void Checker::add(const File& file)
 {
-    Timer timer;
+    timer timer;
     timer.startTimer();
 
     addWords(file);

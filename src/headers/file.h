@@ -13,7 +13,7 @@ private:
     void process();
 
 public:
-    File(const std::string& filePath);
+    explicit File(const std::string& filePath);
     ~File();
     std::vector<std::string> getWords() const;
 };

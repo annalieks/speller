@@ -1,22 +1,22 @@
-#include "../includes/HashTableChecker.h"
+#include "hash_table_checker.h"
 
 // hash function, returnes hash of the given string
-unsigned long HashTableChecker::hash(const std::string& word)
+unsigned long hash_table_checker::hash(const std::string& word)
 {
     unsigned long hash = 0;
     int seed = 1;
 
     for (auto ch : word)
     {
-        seed *= 199;
+        seed *= kHashSeed;
         hash += long(ch-'a')*seed;
     }
 
-    return (hash%SIZE);
+    return (hash % kArraySize);
 }
 
 // adds words into hash table
-void HashTableChecker::addWords(const File& file)
+void hash_table_checker::addWords(const File& file)
 {
     for(const auto& word : file.getWords())
     {
@@ -38,7 +38,7 @@ void HashTableChecker::addWords(const File& file)
 }
 
 // checks words from file
-void HashTableChecker::checkWords(const File& file)
+void hash_table_checker::checkWords(const File& file)
 {
     for(const auto& word : file.getWords())
     {
@@ -60,7 +60,7 @@ void HashTableChecker::checkWords(const File& file)
     }
 }
 
-HashTableChecker::HashTableChecker()
+hash_table_checker::hash_table_checker()
 {
     structureName = "Hash table";
 }

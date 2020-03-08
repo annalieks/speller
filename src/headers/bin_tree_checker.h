@@ -1,5 +1,5 @@
-#ifndef SPELLER_BINTREECHECKER_H
-#define SPELLER_BINTREECHECKER_H
+#ifndef SPELLER_BIN_TREE_CHECKER_H
+#define SPELLER_BIN_TREE_CHECKER_H
 
 #include "Checker.h"
 #include <memory>
@@ -22,10 +22,10 @@ private:
 
 public:
     BinTreeChecker();
-    ~BinTreeChecker() = default;
+    ~BinTreeChecker() final = default;
 
     void addWords(const File& file) final;
     void checkWords(const File& file) final;
 };
 
-#endif //SPELLER_BINTREECHECKER_H
+#endif //SPELLER_BIN_TREE_CHECKER_H

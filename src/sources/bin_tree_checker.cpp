@@ -1,5 +1,5 @@
 #include <iostream>
-#include "../includes/BinTreeChecker.h"
+#include "bin_tree_checker.h"
 
 // virtual function that adds element to the tree
 void BinTreeChecker::addWords(const File& file)
