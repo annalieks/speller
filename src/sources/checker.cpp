@@ -21,7 +21,6 @@ void Checker::check(const File& file)
     checkWords(file);
 
     checkedWords += file.getWords().size();
-
     checkTime += timer.getPassedTime();
 }
 

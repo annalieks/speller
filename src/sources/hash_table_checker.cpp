@@ -1,7 +1,7 @@
 #include "hash_table_checker.h"
 
 // hash function, returnes hash of the given string
-unsigned long hash_table_checker::hash(const std::string& word)
+unsigned long hashTableChecker::hash(const std::string& word)
 {
     unsigned long hash = 0;
     int seed = 1;
@@ -16,7 +16,7 @@ unsigned long hash_table_checker::hash(const std::string& word)
 }
 
 // adds words into hash table
-void hash_table_checker::addWords(const File& file)
+void hashTableChecker::addWords(const File& file)
 {
     for(const auto& word : file.getWords())
     {
@@ -38,7 +38,7 @@ void hash_table_checker::addWords(const File& file)
 }
 
 // checks words from file
-void hash_table_checker::checkWords(const File& file)
+void hashTableChecker::checkWords(const File& file)
 {
     for(const auto& word : file.getWords())
     {
@@ -60,7 +60,7 @@ void hash_table_checker::checkWords(const File& file)
     }
 }
 
-hash_table_checker::hash_table_checker()
+hashTableChecker::hashTableChecker()
 {
     structureName = "Hash table";
 }

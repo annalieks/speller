@@ -18,9 +18,9 @@ int main()
 
     // create data structures
     std::unique_ptr<Checker> binaryTree (new BinTreeChecker());
-    std::unique_ptr<Checker> vector (new vector_checker());
-    std::unique_ptr<Checker> hashMap (new hash_map_checker());
-    std::unique_ptr<Checker> hashTable (new hash_table_checker());
+    std::unique_ptr<Checker> vector (new VectorChecker());
+    std::unique_ptr<Checker> hashMap (new hashMapChecker());
+    std::unique_ptr<Checker> hashTable (new hashTableChecker());
 
     // process dictionary
     File dictionary(dictPath);

@@ -1,14 +1,14 @@
 #include "hash_map_checker.h"
 
 // adds words into unordered set
-void hash_map_checker::addWords(const File& file)
+void hashMapChecker::addWords(const File& file)
 {
     for(const auto& word : file.getWords())
         dictionaryWords.insert(word);
 }
 
 // checks words from file
-void hash_map_checker::checkWords(const File& file)
+void hashMapChecker::checkWords(const File& file)
 {
     for(const auto& word : file.getWords())
     {
@@ -17,7 +17,7 @@ void hash_map_checker::checkWords(const File& file)
     }
 }
 
-hash_map_checker::hash_map_checker()
+hashMapChecker::hashMapChecker()
 {
     structureName = "Hash Map";
 }

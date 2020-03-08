@@ -6,7 +6,7 @@
 #include <cmath>
 #include <array>
 
-class hash_table_checker : public Checker
+class hashTableChecker : public Checker
 {
 private:
     static const int kArraySize = 100000;
@@ -16,8 +16,8 @@ private:
     std::array<std::list<std::string>, kArraySize> dictionaryWords;
 
 public:
-    hash_table_checker();
-    ~hash_table_checker() final = default;
+    hashTableChecker();
+    ~hashTableChecker() final = default;
     void addWords(const File& file) final;
     void checkWords(const File& file) final;
 };

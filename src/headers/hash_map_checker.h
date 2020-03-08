@@ -4,14 +4,14 @@
 #include "Checker.h"
 #include <unordered_set>
 
-class hash_map_checker : public Checker
+class hashMapChecker : public Checker
 {
 private:
     std::unordered_set<std::string> dictionaryWords;
 
 public:
-    hash_map_checker();
-    ~hash_map_checker() final = default;
+    hashMapChecker();
+    ~hashMapChecker() final = default;
     void addWords(const File& file) final;
     void checkWords(const File& file) final;
 };
