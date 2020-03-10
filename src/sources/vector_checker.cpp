@@ -1,32 +1,31 @@
-#include <algorithm>
 #include "vector_checker.h"
+#include <algorithm>
 
 // adds words into vector
-void VectorChecker::add(const File& file)
-{
-    timer->startTimer();
+void VectorChecker::add(const File& file) {
+  timer->startTimer();
 
-    dictionaryWords = file.getWords();
+  dictionaryWords = file.getWords();
 
-    addTime += timer->getPassedTime();
+  addingTime += timer->getPassedTime();
 }
 
 // checks words from file
-void VectorChecker::check(const File& file)
-{
-    timer->startTimer();
+void VectorChecker::check(const File& file) {
+  timer->startTimer();
 
-    for(const auto& word : file.getWords())
-    {
-        if(!std::binary_search(dictionaryWords.begin(), dictionaryWords.end(), word))
-           incorrectWords++;
+  for (const auto& word : file.getWords()) {
+    if (!std::binary_search(dictionaryWords.begin(), dictionaryWords.end(),
+                            word)) {
+        incorrectWords++;
+        writeIncorrectWords(word);
     }
+  }
 
-    checkedWords += file.getWords().size();
-    checkTime += timer->getPassedTime();
+  checkedWords += file.getWords().size();
+  checkingTime += timer->getPassedTime();
 }
 
-VectorChecker::VectorChecker()
-{
+VectorChecker::VectorChecker() {
     structureName = "std::vector";
 }

@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.15)
 project(speller)
 
 set(CMAKE_CXX_STANDARD 14)
-#set(CMAKE_CXX_CLANG_TIDY clang-tidy -checks=-*,readability-*)
 
 list(APPEND SOURCES src/sources/main.cpp
         src/sources/bin_tree_checker.cpp

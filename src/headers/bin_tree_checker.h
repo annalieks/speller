@@ -3,28 +3,28 @@
 
 #include "checker.h"
 
-struct Node
-{
-    std::shared_ptr<Node> right;
-    std::shared_ptr<Node> left;
-    std::string data;
+struct Node {
+  std::shared_ptr<Node> right;
+  std::shared_ptr<Node> left;
+  std::string data;
 };
 
-class BinTreeChecker : public Checker
-{
-private:
-    std::shared_ptr<Node> root;
-    static void addValueToTree(const std::string& val, std::shared_ptr<Node>& head);
+class BinTreeChecker : public Checker {
+ private:
+  std::shared_ptr<Node> root;
+  static void addValueToTree(const std::string& val,
+                             std::shared_ptr<Node>& head);
 
-    void checkInTree(const std::string& val, std::shared_ptr<Node>& head);
-    void addValueByIndex(long left, long right, const std::vector<std::string>& values);
+  void checkInTree(const std::string& val, std::shared_ptr<Node>& head);
+  void addValueByIndex(int64_t left, int64_t right,
+                       const std::vector<std::string>& values);
 
-public:
-    BinTreeChecker();
-    ~BinTreeChecker() final = default;
+ public:
+  BinTreeChecker();
+  ~BinTreeChecker() final = default;
 
-    void add(const File& file) final;
-    void check(const File& file) final;
+  void add(const File& file) final;
+  void check(const File& file) final;
 };
 
-#endif //SPELLER_BIN_TREE_CHECKER_H
+#endif  // SPELLER_BIN_TREE_CHECKER_H

@@ -1,74 +1,64 @@
 #include "hash_table_checker.h"
 
-// hash function, returns hash of the given string
-unsigned long hashTableChecker::hash(const std::string& word)
-{
-    unsigned long hash = 0;
-    int seed = 1;
+// hash function, returns the hash of the given string
+uint64_t hashTableChecker::hash(const std::string& word) {
+  uint64_t hash = 0;
+  int seed = 1;
 
-    for (auto ch : word)
-    {
-        seed *= kHashSeed;
-        hash += long(ch-'a')*seed;
-    }
+  for (auto ch : word) {
+    seed *= kHashSeed;
+    hash += int64_t(ch - 'a') * seed;
+  }
 
-    return (hash % kArraySize);
+  return (hash % kArraySize);
 }
 
 // adds words into hash table
-void hashTableChecker::add(const File& file)
-{
-    timer->startTimer();
+void hashTableChecker::add(const File& file) {
+  timer->startTimer();
 
-    for(const auto& word : file.getWords())
-    {
-        unsigned long index = hash(word);
+  for (const auto& word : file.getWords()) {
+    uint64_t index = hash(word);
 
-        if (dictionaryWords[index].empty())
-        {
-            dictionaryWords[index].insert(dictionaryWords[index].begin(), word);
-        }
-        else {
-            auto p = dictionaryWords[index].begin();
+    if (dictionaryWords.at(index).empty()) {
+      dictionaryWords.at(index).insert(dictionaryWords.at(index).begin(), word);
+    } else {
+      auto p = dictionaryWords.at(index).begin();
 
-            while (p != dictionaryWords[index].end() && word > *p)
-                ++p;
+      while (p != dictionaryWords.at(index).end() && word > *p) {
+          ++p;
+      }
 
-            dictionaryWords[index].insert(p, word);
-        }
+      dictionaryWords.at(index).insert(p, word);
     }
+  }
 
-    addTime += timer->getPassedTime();
+    addingTime += timer->getPassedTime();
 }
 
-// checks words from file
-void hashTableChecker::check(const File& file)
-{
-    timer->startTimer();
+// checks words from the file
+void hashTableChecker::check(const File& file) {
+  timer->startTimer();
 
-    for(const auto& word : file.getWords())
-    {
-        unsigned long index = hash(word);
-        if(dictionaryWords[index].empty())
-        {
-            incorrectWords++;
-        }
-        else {
-            auto p = dictionaryWords[index].begin();
-
-            while (p != dictionaryWords[index].end() && *p != word)
-                p++;
-
-            if (p == dictionaryWords[index].end())
-                incorrectWords++;
-        }
+  for (const auto& word : file.getWords()) {
+    uint64_t index = hash(word);
+    if (dictionaryWords.at(index).empty()) {
+      incorrectWords++;
+    } else {
+      auto p = dictionaryWords.at(index).begin();
+      while (p != dictionaryWords.at(index).end() && *p != word) {
+          p++;
+      }
+      if (p == dictionaryWords.at(index).end()) {
+          incorrectWords++;
+      }
     }
+  }
 
-    checkedWords += file.getWords().size();
-    checkTime += timer->getPassedTime();
+  checkedWords += file.getWords().size();
+  checkingTime += timer->getPassedTime();
 }
 
-hashTableChecker::hashTableChecker()
-{
-    structureName = "Hash table";
+hashTableChecker::hashTableChecker() {
+    structureName = "hash_table";
 }
