@@ -2,7 +2,7 @@
 #define SPELLER_TIMER_H
 #include <chrono>
 
-class timer
+class Timer
 {
 private:
     std::chrono::time_point<std::chrono::system_clock> start;
@@ -10,9 +10,8 @@ private:
     bool is_running;
 
 public:
-    timer() : is_running(false) {}
-    ~timer() = default;
-
+    Timer() : is_running(false) {}
+    ~Timer() = default;
     void startTimer();
     void stopTimer();
     unsigned long getPassedTime();

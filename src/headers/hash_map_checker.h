@@ -1,7 +1,7 @@
 #ifndef SPELLER_HASH_MAP_CHECKER_H
 #define SPELLER_HASH_MAP_CHECKER_H
 
-#include "Checker.h"
+#include "checker.h"
 #include <unordered_set>
 
 class hashMapChecker : public Checker
@@ -12,8 +12,9 @@ private:
 public:
     hashMapChecker();
     ~hashMapChecker() final = default;
-    void addWords(const File& file) final;
-    void checkWords(const File& file) final;
+
+    void add(const File& file) final;
+    void check(const File& file) final;
 };
 
 #endif //SPELLER_HASH_MAP_CHECKER_H

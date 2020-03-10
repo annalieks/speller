@@ -26,18 +26,20 @@ void File::process()
 {
     std::string word;
     std::regex target("([a-z]*|[a-z][a-z']*[a-z])");
-    std::regex removed("[^a-z' ]*");
+    std::regex removedSymbols("[^a-z' ]*");
     std::smatch match;
 
     while(file >> word)
     {
         transform(word.begin(), word.end(), word.begin(), ::tolower);
-        word = std::regex_replace(word,removed, "");
+        word = std::regex_replace(word, removedSymbols, "");
         std::regex_search(word, match, target);
         word = match.str(0);
 
         if (!word.empty())
+        {
             words.push_back(word);
+        }
     }
 }
 

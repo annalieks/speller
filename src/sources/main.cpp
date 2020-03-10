@@ -3,7 +3,7 @@
 #include "vector_checker.h"
 #include "hash_map_checker.h"
 #include "hash_table_checker.h"
-#include "Checker.h"
+#include "checker.h"
 
 int main()
 {
@@ -16,34 +16,34 @@ int main()
             "../texts/tolstoy.txt"
     };
 
-    // create data structures
-    std::unique_ptr<Checker> binaryTree (new BinTreeChecker());
-    std::unique_ptr<Checker> vector (new VectorChecker());
-    std::unique_ptr<Checker> hashMap (new hashMapChecker());
-    std::unique_ptr<Checker> hashTable (new hashTableChecker());
+    std::vector<std::unique_ptr<Checker>> structVector;
+    structVector.emplace_back(std::unique_ptr<Checker> (new BinTreeChecker()));
+    structVector.emplace_back(std::unique_ptr<Checker> (new VectorChecker()));
+    structVector.emplace_back(std::unique_ptr<Checker> (new hashMapChecker()));
+    structVector.emplace_back(std::unique_ptr<Checker> (new hashTableChecker()));
 
     // process dictionary
     File dictionary(dictPath);
 
     //add dictionary
-    binaryTree->add(dictionary);
-    vector->add(dictionary);
-    hashMap->add(dictionary);
-    hashTable->add(dictionary);
+    for(const auto& dataStruct : structVector)
+    {
+        dataStruct->add(dictionary);
+    }
 
     for(const auto& filePath : textsPaths)
     {
         File text(filePath);
-        binaryTree->check(text);
-        vector->check(text);
-        hashMap->check(text);
-        hashTable->check(text);
+        for(const auto& dataStruct : structVector)
+        {
+            dataStruct->check(text);
+        }
     }
 
-    binaryTree->printCheckInfo();
-    vector->printCheckInfo();
-    hashMap->printCheckInfo();
-    hashTable->printCheckInfo();
+    for(const auto& dataStruct : structVector)
+    {
+        dataStruct->printCheckInfo();
+    }
 
     return 0;
 }

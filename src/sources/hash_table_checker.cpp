@@ -1,6 +1,6 @@
 #include "hash_table_checker.h"
 
-// hash function, returnes hash of the given string
+// hash function, returns hash of the given string
 unsigned long hashTableChecker::hash(const std::string& word)
 {
     unsigned long hash = 0;
@@ -16,8 +16,10 @@ unsigned long hashTableChecker::hash(const std::string& word)
 }
 
 // adds words into hash table
-void hashTableChecker::addWords(const File& file)
+void hashTableChecker::add(const File& file)
 {
+    timer->startTimer();
+
     for(const auto& word : file.getWords())
     {
         unsigned long index = hash(word);
@@ -35,15 +37,18 @@ void hashTableChecker::addWords(const File& file)
             dictionaryWords[index].insert(p, word);
         }
     }
+
+    addTime += timer->getPassedTime();
 }
 
 // checks words from file
-void hashTableChecker::checkWords(const File& file)
+void hashTableChecker::check(const File& file)
 {
+    timer->startTimer();
+
     for(const auto& word : file.getWords())
     {
         unsigned long index = hash(word);
-
         if(dictionaryWords[index].empty())
         {
             incorrectWords++;
@@ -58,6 +63,9 @@ void hashTableChecker::checkWords(const File& file)
                 incorrectWords++;
         }
     }
+
+    checkedWords += file.getWords().size();
+    checkTime += timer->getPassedTime();
 }
 
 hashTableChecker::hashTableChecker()

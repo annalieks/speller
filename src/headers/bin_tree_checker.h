@@ -1,8 +1,7 @@
 #ifndef SPELLER_BIN_TREE_CHECKER_H
 #define SPELLER_BIN_TREE_CHECKER_H
 
-#include "Checker.h"
-#include <memory>
+#include "checker.h"
 
 struct Node
 {
@@ -24,8 +23,8 @@ public:
     BinTreeChecker();
     ~BinTreeChecker() final = default;
 
-    void addWords(const File& file) final;
-    void checkWords(const File& file) final;
+    void add(const File& file) final;
+    void check(const File& file) final;
 };
 
 #endif //SPELLER_BIN_TREE_CHECKER_H

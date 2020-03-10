@@ -1,18 +1,18 @@
 #include "timer.h"
 
-void timer::startTimer()
+void Timer::startTimer()
 {
     start = std::chrono::system_clock::now();
     is_running = true;
 }
 
-void timer::stopTimer()
+void Timer::stopTimer()
 {
     end = std::chrono::system_clock::now();
     is_running = false;
 }
 
-unsigned long timer::getPassedTime()
+unsigned long Timer::getPassedTime()
 {
     if(is_running)
         stopTimer();

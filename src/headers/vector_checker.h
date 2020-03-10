@@ -1,7 +1,7 @@
 #ifndef SPELLER_VECTOR_CHECKER_H
 #define SPELLER_VECTOR_CHECKER_H
 
-#include "Checker.h"
+#include "checker.h"
 
 class VectorChecker : public Checker
 {
@@ -12,8 +12,8 @@ public:
     VectorChecker();
     ~VectorChecker() final = default;
 
-    void addWords(const File& file) final;
-    void checkWords(const File& file) final;
+    void add(const File& file) final;
+    void check(const File& file) final;
 };
 
 #endif //SPELLER_VECTOR_CHECKER_H

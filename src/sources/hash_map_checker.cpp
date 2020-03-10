@@ -1,20 +1,29 @@
 #include "hash_map_checker.h"
 
 // adds words into unordered set
-void hashMapChecker::addWords(const File& file)
+void hashMapChecker::add(const File& file)
 {
+    timer->startTimer();
+
     for(const auto& word : file.getWords())
         dictionaryWords.insert(word);
+
+    addTime += timer->getPassedTime();
 }
 
 // checks words from file
-void hashMapChecker::checkWords(const File& file)
+void hashMapChecker::check(const File& file)
 {
+    timer->startTimer();
+
     for(const auto& word : file.getWords())
     {
         if(dictionaryWords.find(word) == dictionaryWords.end())
             incorrectWords++;
     }
+
+    checkedWords += file.getWords().size();
+    checkTime += timer->getPassedTime();
 }
 
 hashMapChecker::hashMapChecker()
