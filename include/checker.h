@@ -24,7 +24,7 @@ class Checker {
 
   virtual void add(const File& file) = 0;
   virtual void check(const File& file) = 0;
-  virtual void writeIncorrectWords(const std::string& word);
+  virtual void writeIncorrectWords(const std::string& word, const std::string& fileName);
   virtual void printCheckInfo();
 };
 

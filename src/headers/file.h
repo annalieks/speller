@@ -8,6 +8,7 @@
 class File {
  private:
   std::ifstream file;
+  std::string fileName;
   std::vector<std::string> words;
   void process();
 
@@ -15,6 +16,7 @@ class File {
   explicit File(const std::string& filePath);
   ~File();
   std::vector<std::string> getWords() const;
+  std::string getFileName() const;
 };
 
 #endif  // SPELLER_FILE_H

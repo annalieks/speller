@@ -18,9 +18,10 @@ void VectorChecker::check(const File& file) {
     if (!std::binary_search(dictionaryWords.begin(), dictionaryWords.end(),
                             word)) {
         incorrectWords++;
-        writeIncorrectWords(word);
+        writeIncorrectWords(word, file.getFileName());
     }
   }
+  incorrectWordsFile.close();
 
   checkedWords += file.getWords().size();
   checkingTime += timer->getPassedTime();

@@ -10,6 +10,11 @@ File::File(const std::string& filePath) {
     exit(1);
   }
   process();
+
+  std::regex target(R"([\w]+\.\w*)");
+  std::smatch match;
+  std::regex_search(filePath, match, target);
+  fileName = match.str(0);
 }
 
 // destructor
@@ -39,4 +44,8 @@ void File::process() {
 
 std::vector<std::string> File::getWords() const {
     return words;
+}
+
+std::string File::getFileName() const {
+    return fileName;
 }
